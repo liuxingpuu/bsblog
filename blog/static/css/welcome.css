@@ -25,7 +25,7 @@ html, body {
 }
 
 body {
-    background: url('/static/img/background.jpg') 50% 50%/cover;
+    background: url('/static/img/background.jpg') 50% 50%/cover!important;
 }
 
 p {
@@ -45,14 +45,14 @@ p {
     text-align: center;
     text-transform: uppercase;
     color: #fff;
-    font-size: 12px;
+    /*font-size: 12px;*/
 }
 
 #info #info-content h1 {
     color: #fff;
     border: 3px solid #fff;
     text-align: center;
-    background: rgba(0, 0, 0, 0.1);
+    /*background: rgba(0, 0, 0, 0.1);*/
     font-size: 22px;
     font-weight: normal;
     padding: 20px;
@@ -71,10 +71,7 @@ p {
 }
 
 .signin {
-    font-size: 10px;
-    padding: 10px;
-    border-radius: 5px;
     float: right;
-    margin-top: 10px;
-    margin-right: 10px;
+    margin-top: 10px!important;
+    margin-right: 10px!important;
 }
