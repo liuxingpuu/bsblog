@@ -75,3 +75,14 @@ p {
     margin-top: 10px!important;
     margin-right: 15px!important;
 }
+
+.input {
+    margin-bottom: 5px;
+}
+form >.button {
+    margin-right: 15px!important;
+}
+form > a {
+    font-size: 12px;
+    text-align: right;
+}

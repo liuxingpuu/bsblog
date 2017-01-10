@@ -14,18 +14,21 @@
 <body>
 <div id="wrapper">
     <button class="signin button border-sub dialogs" data-toggle="click" data-target="#mydialog" data-mask="1"
-            data-width="50%">sign in
+            data-width="25%">sign in
     </button>
-    <!--<button class="button">-->
-    <!--弹出对话框-->
-    <!--</button>-->
     <div id="mydialog">
         <div class="dialog">
             <div class="dialog-head">
                 <span class="close rotate-hover"></span><strong>sign in</strong>
             </div>
             <div class="dialog-body">
-
+                <form class="form form-block" role="form" method="post">
+                    <input type="text" class="input" name="username" placeholder="用户名" required="">
+                    <input type="text" class="input" name="password" placeholder="密码" required="">
+                    <button type="submit" name="signin" class="button">登陆</button>
+                    <button type="submit" name="signup" class="button">注册</button>
+                    <a href="#">游客访问</a>
+                </form>
             </div>
         </div>
     </div>
