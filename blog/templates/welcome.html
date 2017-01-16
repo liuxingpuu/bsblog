@@ -13,14 +13,26 @@
 </head>
 <body>
 <div id="wrapper">
+    <button class="button button-big bg-main dialogs" data-toggle="click" data-target="#mydialog" data-mask="1" data-width="50%">
+	弹出对话框</button>
+<div id="mydialog">
+	<div class="dialog">
+		<div class="dialog-head">
+			<span class="close rotate-hover"></span><strong>对话框标题</strong>
+		</div>
+		<div class="dialog-body">
+			对话框内容</div>
+		<div class="dialog-foot">
+			<button class="button dialog-close">
+				取消</button>
+			<button class="button bg-green">
+				确认</button>
+		</div>
+	</div>
+</div>
     <button class="signin button border-sub dialogs" data-toggle="click" data-target="#mydialog" data-mask="1"
             data-width="25%">sign in
     </button>
-    <div id="mydialog">
-        <div class="dialog">
-            <div class="dialog-head">
-                <span class="close rotate-hover"></span><strong>sign in</strong>
-            </div>
             <div class="dialog-body">
                 <form class="form form-block" role="form" method="post">
                     <input type="text" class="input" name="username" placeholder="用户名" required="">
@@ -28,10 +40,8 @@
                     <button type="submit" name="signin" class="button">登陆</button>
                     <button type="submit" name="signup" class="button">注册</button>
                     <a href="#">游客访问</a>
-                </form>
-            </div>
-        </div>
-    </div>
+
+
     <div id="info">
         <div id="info-content">
             <h1><strong>Salted－fish</strong>咸 鱼</h1>

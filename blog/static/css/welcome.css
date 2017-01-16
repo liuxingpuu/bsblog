@@ -79,10 +79,10 @@ p {
 .input {
     margin-bottom: 5px;
 }
-form >.button {
-    margin-right: 15px!important;
-}
 form > a {
     font-size: 12px;
     text-align: right;
+}
+form >.button {
+    margin-right: 35px;
 }
