@@ -13,35 +13,31 @@
 </head>
 <body>
 <div id="wrapper">
-    <button class="button button-big bg-main dialogs" data-toggle="click" data-target="#mydialog" data-mask="1" data-width="50%">
-	弹出对话框</button>
-<div id="mydialog">
-	<div class="dialog">
-		<div class="dialog-head">
-			<span class="close rotate-hover"></span><strong>对话框标题</strong>
-		</div>
-		<div class="dialog-body">
-			对话框内容</div>
-		<div class="dialog-foot">
-			<button class="button dialog-close">
-				取消</button>
-			<button class="button bg-green">
-				确认</button>
-		</div>
-	</div>
-</div>
+    <div id="mydialog">
+        <div class="dialog">
+            <div class="dialog-head">
+                <span class="close rotate-hover"></span><strong>请登陆</strong>
+            </div>
+            <div class="dialog-body">
+                <form action="" method="post">
+                    <input id="username" name="username" placeholder="请输入用户名" required="" type="text" autocomplete="off" step="4">
+                    <input id="password" name="password" placeholder="请输入密码" required="" type="password">
+                </form>
+            </div>
+            <div class="dialog-foot">
+                <a href="#">游客访问</a>
+                <button class="button dialog-close">
+                    登陆
+                </button>
+                <button class="button bg-green">
+                    注册
+                </button>
+            </div>
+        </div>
+    </div>
     <button class="signin button border-sub dialogs" data-toggle="click" data-target="#mydialog" data-mask="1"
             data-width="25%">sign in
     </button>
-            <div class="dialog-body">
-                <form class="form form-block" role="form" method="post">
-                    <input type="text" class="input" name="username" placeholder="用户名" required="">
-                    <input type="text" class="input" name="password" placeholder="密码" required="">
-                    <button type="submit" name="signin" class="button">登陆</button>
-                    <button type="submit" name="signup" class="button">注册</button>
-                    <a href="#">游客访问</a>
-
-
     <div id="info">
         <div id="info-content">
             <h1><strong>Salted－fish</strong>咸 鱼</h1>
