@@ -4,4 +4,6 @@ import logging
 
 class User(object):
 
-    pass
+    def __init__(self,user_name=None):
+        if user_name:
+            sql = "select * from user_list where user_name = '{}'".format(user_name)
