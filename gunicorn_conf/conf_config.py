@@ -7,5 +7,5 @@ host = os.getenv('HOSTNAME')
 workers=1
 worker_class = 'gevent'
 proc_name = 'tblog'
-pidfile = '/tmp/tmjweb.pid'
-errorlog = '/data/mjweb/mjweb.log'
+pidfile = '/tmp/tblog.pid'
+errorlog = '/data/blog/blog.log'
