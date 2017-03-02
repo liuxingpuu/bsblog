@@ -1,6 +1,6 @@
 
 
-bind = 'unix:/data/blog/blog.sock'
+bind = 'unix:/home/data/blog/blog.sock'
 import os
 host = os.getenv('HOSTNAME')
 # bind = str(host)+':8088'
