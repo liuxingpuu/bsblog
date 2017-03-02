@@ -2,8 +2,8 @@
 import sys
 sys.path.append("..")
 
-from ..blog import create_app
+from blog import create_app
 
 import os
-web_config = os.environ.get('WEBCONFIG', 'ucloud')
+web_config = os.environ.get('WEBCONFIG')
 app = create_app(web_config)
