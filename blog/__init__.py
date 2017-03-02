@@ -2,9 +2,6 @@
 import importlib
 from flask import Flask
 
-app = Flask(__name__)
-app.config.from_object("config")
-
 
 def load_config_class(config_name):
     """导入config配置"""
@@ -22,3 +19,14 @@ def create_app(config_name):
 
     config_class = load_config_class(config_name)
     app.config.from_object(config_class)
+
+    configure_blueprint(app)
+
+    return app
+
+def configure_blueprint(app):
+    """注册初始化blueprint"""
+    from .urls import routers
+
+    for blueprint, url_prefix in routers:
+        app.register_blueprint(blueprint, url_prefix=url_prefix)
