@@ -8,6 +8,7 @@ class WebConfig(BaseConfig):
 
     DATABASE_URLS = {
         'default': 'postgresql://qipai:qipai#xq5@10.133.195.48:9999/statdb',
+        'blogdb': 'postgresql://liuxingpu:liuxingpu@127.0.0.1:5432/blogdb',
     }
 
 
