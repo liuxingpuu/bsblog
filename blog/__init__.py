@@ -1,7 +1,12 @@
 # -*- coding:utf-8 -*-
 import importlib
+
 from flask import Flask
 
+from tm.sql import DatabaseWrapper
+from tm.sql import DatabaseClient
+
+blogdb = DatabaseClient('blogdb')
 
 def load_config_class(config_name):
     """导入config配置"""
@@ -20,6 +25,7 @@ def create_app(config_name):
     config_class = load_config_class(config_name)
     app.config.from_object(config_class)
 
+    DatabaseWrapper.init_app(app)
     configure_blueprint(app)
 
     return app
