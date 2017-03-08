@@ -1,15 +1,20 @@
 <html>
 <head>
     {% if title %}
-    <title>{{ title }} - 咸鱼</title>
+        <title>{{ title }} - 咸鱼</title>
     {% else %}
-    <title>咸鱼</title>
+        <title>咸鱼</title>
     {% endif %}
     <!--<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/pintuer.css') }}">
     <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
     <script src="{{ url_for('static', filename='js/pintuer.js') }}"></script>
+    <script>
+        function check() {
+            $("form").submit();
+        }
+    </script>
 </head>
 <body>
 <div id="wrapper">
@@ -18,21 +23,25 @@
             <div class="dialog-head">
                 <span class="close rotate-hover"></span><strong>请登陆</strong>
             </div>
-            <div class="dialog-body">
-                <form action="" method="post">
-                    <input id="username" name="username" placeholder="请输入用户名" required="" type="text" autocomplete="off" step="4">
+
+            <div id="signin" class="dialog-body">
+                <form action="{{ url_for('auth.signin') }}" method="post">
+{#                    {{ form.hidden_tag() }}#}
+                    <input id="username" name="username" placeholder="请输入用户名" required="" type="text" autocomplete="off"
+                           step="4">
                     <input id="password" name="password" placeholder="请输入密码" required="" type="password">
                 </form>
             </div>
             <div class="dialog-foot">
-                <a href="#">游客访问</a>
-                <button class="button dialog-close">
+                {#                    <a href="#">游客访问</a>#}
+                <button id="signin-button submit" type="submit" onclick="check()" class="button dialog-close">
                     登陆
                 </button>
-                <button class="button bg-green">
-                    注册
-                </button>
+                {#                    <button id="signup-button" class="button bg-green">#}
+                {#                        注册#}
+                {#                    </button>#}
             </div>
+
         </div>
     </div>
     <button class="signin button border-sub dialogs" data-toggle="click" data-target="#mydialog" data-mask="1"
@@ -46,4 +55,48 @@
     </div>
 </div><!-- #wrapper -->
 </body>
+{#<script>#}
+{#    var password = document.getElementById("password");#}
+{#    var p = document.createElement("p");#}
+{#    var submit = document.getElementById("submit");#}
+{#    var form = $("form");#}
+{#    var formid = $("#submit");#}
+{#    p.id = "error_message";#}
+{#    $(document).ready(function () {#}
+{#                formid.removeAttr("name");#}
+{#                formid.attr("id", "submitid")#}
+{#            }#}
+{#    );#}
+{##}
+{#    form.bind('submit', function (e) {#}
+{#        var value = document.getElementById("server_ip").value;#}
+{#        var data = {};#}
+{#        data['ip'] = value;#}
+{#        result = "";#}
+{#        $.ajax({#}
+{#            type: 'post',#}
+{#            context: $(this),#}
+{#            url: "{{ url_for('game.is_addip_repeat') }}",#}
+{#            data: data,#}
+{#            async: false,#}
+{#            success: function (data) {#}
+{#                submit.parentNode.insertBefore(p, submit);#}
+{#                document.getElementById("error_message").innerText = data['errmsg'];#}
+{#                if (data['errno'] == 0) {#}
+{#                    document.getElementById("error_message").style.color = 'green';#}
+{#                    return result = 0#}
+{#                }#}
+{#                else {#}
+{#                    document.getElementById("error_message").style.color = 'red';#}
+{#                    e.preventDefault();#}
+{#                    return result = 1#}
+{#                }#}
+{#            }#}
+{#        });#}
+{#        if (result == 1) {#}
+{#            return false#}
+{#        }#}
+{#    });#}
+{##}
+{#</script>#}
 </html>
