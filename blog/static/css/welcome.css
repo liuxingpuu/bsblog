@@ -95,7 +95,7 @@ input {
     border: 1px solid lightgray;
     letter-spacing: 3px;
 }
-#username {
+#phone_number {
     margin-bottom: 10px;
 }
 input:-webkit-autofill {
