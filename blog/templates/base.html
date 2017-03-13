@@ -1,12 +1,12 @@
 <html>
 <head>
     {% if title %}
-    <title>{{ title }} - 雪忆</title>
+    <title>{{ title }} - 咸鱼</title>
     {% else %}
-    <title>雪忆</title>
+    <title>咸鱼</title>
     {% endif %}
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 </head>
 <body>
 <header class="header">
@@ -24,26 +24,31 @@
     <nav class="menu">
         <ul>
             <li>
-                <a href="#">Home</a>
+                <a href="#">首页</a>
             </li>
             <li>
-                <a href="#">Archive</a>
+                <a href="#">文章</a>
             </li>
             <li>
-                <a href="#">About me</a>
+                <a href="#">相册</a>
+            </li>
+            <li>
+                <a href="#">关于我</a>
+            </li>
+            <li style="float: right">
+                <a href="#">退出</a>
             </li>
         </ul>
     </nav>
     <aside class="sidebar">
         <div class="widget">
-            <h2>Michael</h2>
-            <p>Hello, my name’s <b>Andrew Liu</b>. I’m 23 years old. I live in <b>NanJing (China)</b>. I am a <b>Pythoner</b>.<br>
-                Contact Me:<br><b>liu.bin.coder@gmail.com</b></p>
+            <h2>咸鱼</h2>
+            <p>Hello, 我的名字是 <b>刘行朴</b>. 我是一个 <b>咸鱼</b>.<br>
+                联系我:<br><b>547137554@qq.com</b></p>
         </div>
         <div class="widget">
-            <h2>Title</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
+            <h2>标题</h2>
+            <p></p>
         </div>
 
     </aside>

@@ -15,10 +15,10 @@ def signin():
 
     if form.validate_on_submit():
         user = User(form.phone_number.data.strip()).get_instance()
-        if user:
-            if user.check_password(form.password.data):
+        # if user:
+        #     if user.check_password(form.password.data):
 
-                return redirect(url_for('main.home'))
+        return redirect(url_for('main.index'))
 
     return render_template('welcome.html', title='Welcome',form=form)
 
