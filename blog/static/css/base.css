@@ -57,14 +57,14 @@ hr {
 }
 
 .wrap {
-    width: 950px;
+    width: 1100px;
     margin: 25px auto;
 }
 
 nav.menu ul {
     overflow: hidden;
-    float: left;
-    width: 650px;
+    float: right;
+    width: 800px;
     padding: 0;
     margin: 0 0 0;
     list-style: none;
@@ -82,7 +82,7 @@ nav.menu ul li {
 
 nav.menu ul a {
     display: block;
-    padding: 25px;
+    padding: 25px 40px;
     font-size: 16px;
     font-weight: 600;
     text-transform: uppercase;
@@ -98,7 +98,7 @@ nav.menu ul a:hover {
 
 .sidebar {
     width: 275px;
-    float: right;
+    float: left;
 }
 
 .sidebar .widget {

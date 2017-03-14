@@ -12,14 +12,18 @@ main = Blueprint("main", __name__)
 
 @main.route('/')
 def welcome():
-    form = SignForm
+    form = SignForm()
     return render_template('welcome.html', title='Welcome',form=form)
 
 @main.route('/index')
 def index():
+    return render_template('index.html',title='base')
+
+@main.route('/home')
+def home():
     return render_template('base.html',title='base')
 
-@main.route('article')
+@main.route('/article')
 def article():
     pass
     sql = """
