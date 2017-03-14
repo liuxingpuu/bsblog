@@ -7,11 +7,11 @@ class WebConfig(BaseConfig):
     TESTING = False
 
     DATABASE_URLS = {
-        'default': 'postgresql://qipai:qipai#xq5@10.133.195.48:9999/statdb',
+        'default': 'postgresql://lxp:lxp#555@127.0.0.1:9999/blogdb',
         'blogdb': 'postgresql://liuxingpu:liuxingpu@127.0.0.1:5432/blogdb',
     }
 
 
     REDIS_URLS = {
-        "default": "redis://:crs-3e3gxvaw:qipai0918@10.66.152.122:6379/0",
+        "default": "",
     }
