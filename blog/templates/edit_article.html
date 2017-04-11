@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}欢迎光临首页{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nprogress.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nivo-slider.css') }}" type="text/css"
+          media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/default.css') }}" type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/wangEditor.min.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.nivo.slider.pack.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/nprogress.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/wangEditor.min.js') }}"></script>
+    <div style="width: 760px;margin: 0px auto">
+        <div class="container-fluid main-container" id="main-container">
+            <p style="margin-top: 30px"></p>
+            <div id="editor" style="height: 500px"><p>请输入内容...</p></div>
+
+            <!-- 网站底部 -->
+            <footer>
+                <!--版权信息-->
+                <div class="copyright">
+                    {#            Copyright Ybsat ©2016 All rights reserved 豫ICP备15027119&nbsp;&nbsp;#}
+                    <a href="www.ybsat.com">
+                        Theme leaves by Ybsat
+                    </a>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var editor = new wangEditor('editor');
+        editor.config.menuFixed = false;
+        editor.config.codeDefaultLang = 'python';
+        editor.create();
+    </script>
+{% endblock %}

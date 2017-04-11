@@ -22,30 +22,34 @@
     <nav class="menu">
         <ul>
             <li>
-                <a href="#">首页</a>
+                <a style="text-decoration: none" href="{{ url_for('main.index') }}">首页</a>
             </li>
             <li>
-                <a href="#">文章</a>
+                <a style="text-decoration: none" href="{{ url_for('main.article') }}">文章</a>
             </li>
             <li>
-                <a href="#">相册</a>
+                <a style="text-decoration: none" href="{{ url_for('main.photo_album') }}">相册</a>
             </li>
             <li>
-                <a href="#">关于我</a>
+                <a style="text-decoration: none" href="{{ url_for('main.about_me') }}">关于我</a>
+            </li>
+            <li>
+                <a style="text-decoration: none" href="{{ url_for('main.edit_article') }}">写文章</a>
             </li>
             <li style="float: right">
-                <a href="#">退出</a>
+                <a style="text-decoration: none" href="#">退出</a>
             </li>
         </ul>
     </nav>
     <aside class="sidebar">
         <div class="widget">
             <h2>咸鱼</h2>
-            <p>Hello, 我的名字是 <b>刘行朴</b>. 我是一个 <b>咸鱼</b>.<br>
-                联系我:<br><b>547137554@qq.com</b></p>
+            <p>Hello, 我的名字是 <b>刘行朴</b>.<br>
+                联系我:<br><b>QQ邮箱：547137554@qq.com</b><br>
+            <b>Github</b>：<a style="text-decoration: none;" href="https://github.com/liuxingpuu">github.com/liuxingpuu</a></p>
         </div>
         <div class="widget">
-            <h2>标题</h2>
+            <h2></h2>
             <p></p>
         </div>
     </aside>

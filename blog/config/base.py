@@ -8,7 +8,7 @@ class BaseConfig(object):
     BOOTSTRAP_SERVE_LOCAL = True
 
     # 应用私钥
-    SECRET_KEY = ''
+    SECRET_KEY = 't(5hxsl0t*(^7v9dftc)k47cp0*miuic=4kw^1bm(iey#*z2-h'
 
     # Postgrsql数据库配置
     DATABASE_URLS = {
@@ -24,4 +24,4 @@ class BaseConfig(object):
     SESSION_COOKIE_NAME = 'session'
 
 
-    
+

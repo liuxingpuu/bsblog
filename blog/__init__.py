@@ -2,6 +2,7 @@
 import importlib
 
 from flask import Flask
+from flask_login import current_user,  LoginManager
 
 from tm.sql import DatabaseWrapper
 from tm.sql import DatabaseClient

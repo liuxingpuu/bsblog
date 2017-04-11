@@ -25,9 +25,20 @@ def home():
 
 @main.route('/article')
 def article():
-    pass
-    sql = """
-    select * from article where user_id = %s
-    """
-    blogdb.get(sql)
+    # sql = """
+    # select * from article where user_id = %s
+    # """
+    # blogdb.query(sql)
     return render_template('article.html')
+
+@main.route('/photo_album')
+def photo_album():
+    return render_template('photo_album.html')
+
+@main.route('/about_me')
+def about_me():
+    return render_template('about_me.html')
+
+@main.route('/edit_article')
+def edit_article():
+    return render_template('edit_article.html')
