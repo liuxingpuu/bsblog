@@ -2,6 +2,61 @@
 {% block title %}欢迎光临首页{% endblock %}
 
 {% block content %}
+    <style>
+        .button.bg-sub {
+            border-color: #0ae;
+        }
+
+        .button.bg-sub {
+            color: #fff
+        }
+
+        .bg-sub {
+            background-color: #0ae !important;
+        }
+
+        .button {
+            border: solid 1px #ddd;
+            background: transparent;
+            border-radius: 4px;
+            font-size: 14px;
+            padding: 6px 15px;
+            margin: 0;
+            display: inline-block;
+            line-height: 20px;
+            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1) 0s;
+        }
+
+        button {
+            -webkit-appearance: button;
+            cursor: pointer;
+            text-transform: none;
+            overflow: visible;
+            font: inherit;
+        }
+
+        .button-big {
+            padding: 10px 30px;
+            font-size: 18px;
+            line-height: 22px;
+        }
+        input {
+            font-size: 14px!important;
+            padding-left: 8px!important;
+            border: solid 1px #ddd;
+            width: 100%;
+            height: 34px;
+            line-height: 20px;
+            display: block;
+            border-radius: 4px;
+            -webkit-appearance: none;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1) 0s;
+        }
+    .bg-back {
+        background-color: #efe;
+    }
+    </style>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/nprogress.css') }}">
@@ -9,15 +64,24 @@
           media="screen">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/default.css') }}" type="text/css" media="screen">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/wangEditor.min.css') }}">
-    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/jquery.nivo.slider.pack.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/nprogress.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/wangEditor.min.js') }}"></script>
+    {#    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/pintuer.css') }}">#}
     <div style="width: 760px;margin: 0px auto">
         <div class="container-fluid main-container" id="main-container">
-            <p style="margin-top: 30px"></p>
-            <div id="editor" style="height: 500px"><p>请输入内容...</p></div>
+            <p style="padding: 5px;font-size: 12px" class="bg-back">编辑完文章后点击下方保存按钮发布，别忘了填写标题和标签哦~！:)</p>
+            <div>
+                <label>标题</label>
+	            <input id="title" type="text" class="input" value="" placeholder="文章的标题" />
+            </div>
+            <div>
+                <label>Tags</label>
+	            <input id="tags" type="text" class="input" value="" placeholder="标签，以'/'隔开，例如'生活/技术/往事'等关键字" />
+            </div>
 
+            <label>内容</label>
+            <div id="editor" style="height: 400px"><p>请输入内容...</p></div>
+            <button style="display:block;margin:10px auto" class="button bg-sub button-big" id="submit"
+                    onfocus="blur()">保存
+            </button>
             <!-- 网站底部 -->
             <footer>
                 <!--版权信息-->
@@ -30,10 +94,34 @@
             </footer>
         </div>
     </div>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.nivo.slider.pack.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/nprogress.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/wangEditor.min.js') }}"></script>
     <script type="text/javascript">
         var editor = new wangEditor('editor');
         editor.config.menuFixed = false;
         editor.config.codeDefaultLang = 'python';
         editor.create();
+        $('#submit').click(function () {
+            // 获取编辑器区域完整html代码
+            var content = editor.$txt.html();
+            var title = $('#title').val();
+            var tags = $('#tags').val();
+            $.ajax({
+                url: "{{ url_for('main.edit_article') }}",
+                type: 'POST',
+                data: {
+                    content:content,
+                    title:title,
+                    tags:tags
+                },
+                dataType: "text",
+{#                async: false,#}
+                success: function () {
+                    window.location.href = "{{ url_for('main.article') }}"
+                }
+            });
+        });
     </script>
 {% endblock %}

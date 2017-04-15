@@ -18,7 +18,7 @@
 
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
-    background-color:cyan;
+    background-color:lightgray;
 }
 
 /*样式初始化*/

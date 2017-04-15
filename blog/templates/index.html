@@ -2,6 +2,11 @@
 {% block title %}欢迎光临首页{% endblock %}
 
 {% block content %}
+    <style>
+        code > span, code > span > span {
+            color: black !important;
+        }
+    </style>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/nprogress.css') }}">
@@ -41,12 +46,24 @@
             </span>
                     </div>
                     <div class="post-content">
-                        <p>
-                            如果您在使用中遇到什么麻烦的事情,那么baby千万不要捶胸顿足,在友情链接界面您会看到作者的博客链接，您可以通过访问作者的博客留言联系我
-                            <a href="http://www.ybsat.com">
-                                联系我
-                            </a>
-                        </p>
+                        <p>请输入内容...</p>
+                        <p><br></p>
+                        <pre style="max-width: 100%;"><code class="python hljs" codemark="1"><span class="hljs-meta">@main.route('/home')</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">home</span><span
+        class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">return</span> render_template(<span class="hljs-string">'base.html'</span>,title=<span
+                                    class="hljs-string">'base'</span>)
+
+<span class="hljs-meta">@main.route('/article')</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">article</span><span
+        class="hljs-params">()</span>:</span>
+    <span class="hljs-comment"># sql = """</span>
+    <span class="hljs-comment"># select * from article where user_id = %s</span>
+    <span class="hljs-comment"># """</span>
+    <span class="hljs-comment"># blogdb.query(sql)</span>
+    <span class="hljs-keyword">return</span> render_template(<span
+                                    class="hljs-string">'article.html'</span>)</code></pre>
+                        <p><br></p>
                     </div>
                     <div class="meta-box">
             <span class="cat-links">
