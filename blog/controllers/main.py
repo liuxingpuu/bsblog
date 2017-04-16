@@ -7,6 +7,7 @@ from flask_login import current_user
 
 from ..forms.auth import SignForm
 from ..utils.db import blogdb
+from ..utils.qiniu import qiniu_lib
 
 main = Blueprint("main", __name__)
 
@@ -19,7 +20,11 @@ def welcome():
 
 @main.route('/index')
 def index():
-    return render_template('index.html',title='base')
+    sql = """
+    select *,to_char(created_time,'YYYY-MM-DD HH24:MI:SS') as created_time from article where user_id = %s
+    """
+    objs = blogdb.query(sql,user_id)
+    return render_template('index.html',title='base',objs=objs)
 
 @main.route('/home')
 def home():
@@ -27,15 +32,42 @@ def home():
 
 @main.route('/article')
 def article():
-    # sql = """
-    # select * from article where user_id = %s
-    # """
-    # blogdb.query(sql)
-    return render_template('article.html')
+    article_id = request.args.get('article_id',None)
+    sql = """
+    select *,to_char(created_time,'YYYY-MM-DD HH24:MI:SS') as created_time from article where user_id = %s and id =%s
+    """
+    objs = blogdb.query(sql,user_id,article_id)
+    return render_template('article.html',objs=objs)
+
+@main.route("/article_list")
+def article_list():
+    sql = """
+    select *,to_char(created_time,'YYYY-MM-DD HH24:MI:SS') as created_time from article where user_id = %s
+    """
+    objs = blogdb.query(sql,user_id)
+    return render_template('article_list.html',objs=objs)
 
 @main.route('/photo_album')
 def photo_album():
     return render_template('photo_album.html')
+
+@main.route('/img_upload', methods=["GET", "POST"])
+def img_upload():
+    img_file = request.files.get('img_url')
+    upload = qiniu_lib(access_key="3tp3FnwQn_jamkXiQE3HlOwHnItkyd2b_N6i2BMH",
+                       secret_key="xogHUWGjKMKaQ5BY8ULNuSglPVYLCgICp9hDR7tT")
+
+    if img_file:
+        result = upload.upload(upload_file=img_file,bucket_name='qipai-activity', file_type='img')
+    else:
+        result = {"status":2, "errmsg":u"文件上传出错"}
+    if result['status'] != 1:
+        current_app.logger.error('ttt%s' % (result))
+
+        return render_template("img_upload.html")
+    img_url = result['file_url']
+    blogdb.execute("insert into photo_album (user_id,photo_url) VALUES (%s,%s)",user_id,img_url)
+    return render_template('img_upload.html')
 
 @main.route('/about_me')
 def about_me():

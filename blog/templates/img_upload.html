@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}欢迎光临首页{% endblock %}
+
+{% block content %}
+    <style>
+        .label {
+            padding-bottom: 7px;
+            display: block;
+            line-height: 20px;
+        }
+
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pintuer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nprogress.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nivo-slider.css') }}" type="text/css"
+          media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/default.css') }}" type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/wangEditor.min.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.nivo.slider.pack.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/nprogress.js') }}"></script>
+    <div style="width: 760px;margin: 0px auto">
+        <div class="container-fluid main-container" id="main-container">
+            <div class="row top-title">
+                <div class="col-md-12">
+                    <h1 class="page-title">
+                        上传照片
+                    </h1>
+                </div>
+            </div>
+            <form action="{{ url_for('main.img_upload') }}" method="post" enctype="multipart/form-data">
+                <a class="button input-file" href="javascript:;">
+                    + 选择图片<input type="file" name="img_url" id="f" onchange="change()"/>
+                </a>
+                <label style="display: block">图片预览：</label>
+                <img style="width: 250px;margin:0 auto;display:block;margin-top: 5px" id="preview" alt="" name="pic"/>
+{#                <label>Tags:</label>#}
+{#	            <input id="tags" type="text" class="input" value="" placeholder="标签，以'/'隔开，例如'生活/技术/往事'等关键字" />#}
+{#                <label>描述:</label>#}
+{#	            <input id="tags" type="text" class="input" value="" placeholder="图片描述，简要描述这个图片表达的内容" />#}
+                <button style="display:block;margin:10px auto;padding: 5px 15px" class="button bg-sub" type="submit" id="submit">上传照片</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function change() {
+            var pic = document.getElementById("preview"),
+                    file = document.getElementById("f");
+
+            var ext = file.value.substring(file.value.lastIndexOf(".") + 1).toLowerCase();
+
+            // gif在IE浏览器暂时无法显示
+            if (ext != 'png' && ext != 'jpg' && ext != 'jpeg') {
+                alert("图片的格式必须为png或者jpg或者jpeg格式！");
+                return;
+            }
+            var isIE = navigator.userAgent.match(/MSIE/) != null,
+                    isIE6 = navigator.userAgent.match(/MSIE 6.0/) != null;
+
+            if (isIE) {
+                file.select();
+                var reallocalpath = document.selection.createRange().text;
+
+                // IE6浏览器设置img的src为本地路径可以直接显示图片
+                if (isIE6) {
+                    pic.src = reallocalpath;
+                } else {
+                    // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
+                    pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
+                    // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+                    pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+                }
+            } else {
+                html5Reader(file);
+            }
+        }
+
+        function html5Reader(file) {
+            var file = file.files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                var pic = document.getElementById("preview");
+                pic.src = this.result;
+            }
+        }
+    </script>
+{% endblock %}

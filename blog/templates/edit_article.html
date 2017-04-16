@@ -67,6 +67,13 @@
     {#    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/pintuer.css') }}">#}
     <div style="width: 760px;margin: 0px auto">
         <div class="container-fluid main-container" id="main-container">
+            <div class="row top-title">
+                <div class="col-md-12">
+                    <h1 class="page-title">
+                        发布文章
+                    </h1>
+                </div>
+            </div>
             <p style="padding: 5px;font-size: 12px" class="bg-back">编辑完文章后点击下方保存按钮发布，别忘了填写标题和标签哦~！:)</p>
             <div>
                 <label>标题</label>
@@ -82,16 +89,6 @@
             <button style="display:block;margin:10px auto" class="button bg-sub button-big" id="submit"
                     onfocus="blur()">保存
             </button>
-            <!-- 网站底部 -->
-            <footer>
-                <!--版权信息-->
-                <div class="copyright">
-                    {#            Copyright Ybsat ©2016 All rights reserved 豫ICP备15027119&nbsp;&nbsp;#}
-                    <a href="www.ybsat.com">
-                        Theme leaves by Ybsat
-                    </a>
-                </div>
-            </footer>
         </div>
     </div>
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
@@ -119,7 +116,7 @@
                 dataType: "text",
 {#                async: false,#}
                 success: function () {
-                    window.location.href = "{{ url_for('main.article') }}"
+                    window.location.href = "{{ url_for('main.article_list') }}"
                 }
             });
         });

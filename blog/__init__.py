@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 import importlib
+import logging
 
 from flask import Flask
 from flask_login import current_user,  LoginManager
@@ -29,7 +30,19 @@ def create_app(config_name):
     DatabaseWrapper.init_app(app)
     configure_blueprint(app)
 
+    from .utils.filters import configure_template_filters
+    configure_template_filters(app)
+    configure_logging(app)
+
     return app
+
+def configure_logging(app):
+    formatter = logging.Formatter(
+        "[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s")
+    handler = logging.StreamHandler()
+    handler.setLevel(logging.DEBUG)
+    handler.setFormatter(formatter)
+    app.logger.addHandler(handler)
 
 def configure_blueprint(app):
     """注册初始化blueprint"""
