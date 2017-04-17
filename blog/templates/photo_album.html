@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/default.css') }}" type="text/css" media="screen">
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.nivo.slider.pack.js') }}"></script>
     <script src="{{ url_for('static', filename='js/nprogress.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.fancybox.js') }}"></script>
@@ -26,113 +27,47 @@
                     <div class="meta-box"></div>
                     <div class="post-content">
                         <p>存放一些照片。</p>
+                        <p>点击图片可以查看大图</p>
                         <hr/>
-                        <style>
-                            .book-opt-sort {
-                                margin-left: 10px;
-                            }
-                        </style>
-{#                        <div class="btn-group book-opt-filter"><a class="btn btn-primary btn-sm"#}
-{#                                                                  data-filter="*">显示所有</a>#}
-{#                            <button style="height:30px" type="button" class="btn btn-primary btn-sm dropdown-toggle"#}
-{#                                    data-toggle="dropdown"><span class="caret"></span><span class="sr-only">筛选内容</span>#}
-{#                            </button>#}
-{#                            <ul class="dropdown-menu" role="menu">#}
-{#                                <li><a data-filter=".book-cat-recommend">推荐</a></li>#}
-{#                                <li><a data-filter=".book-cat-oreilly">“前端”</a></li>#}
-{#                                <li><a data-filter=".book-cat-oreilly">“后端”</a></li>#}
-{#                            </ul>#}
-{#                        </div>#}
-{#                        <div class="btn-group book-opt-sort"><a class="btn btn-primary btn-sm"#}
-{#                                                                data-sort-by="original-order">默认排序</a>#}
-{#                            <button style="height:30px" type="button" class="btn btn-primary btn-sm dropdown-toggle"#}
-{#                                    data-toggle="dropdown"><span class="caret"></span><span class="sr-only">切换排序</span>#}
-{#                            </button>#}
-{#                            <ul class="dropdown-menu" role="menu">#}
-{#                                <li><a data-sort-by="name">类型</a></li>#}
-{#                                <li><a data-sort-by="author">时间</a></li>#}
-{#                                <li class="divider"></li>#}
-{#                                <li><a data-sort-by="pubdate">开源</a></li>#}
-{#                                <li><a data-sort-by="publisher">购买</a></li>#}
-{#                            </ul>#}
-{#                        </div>#}
                         <div class="book-container clearfix">
-                            <div class="meta-box"></div>
-                            <div style="height: 20%" class="row">
-
-                                <div class="col-md-3"><a class="fancybox" rel="group"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                                <div class="col-md-3"><a class="fancybox" rel="group"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                                <div class="col-md-3"><a class="fancybox" rel="group"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                                <div class="col-md-3"><a class="fancybox" rel="group"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                            </div>
-                            <div class="meta-box"></div>
-                            <div style="height: 20%" class="row">
-                                <div class="col-md-3"><a class="fancybox" rel="group1"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                                <div class="col-md-3"><a class="fancybox" rel="group1"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                                <div class="col-md-3"><a class="fancybox" rel="group1"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                                <div class="col-md-3"><a class="fancybox" rel="group1"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                            </div>
-                            <div class="meta-box"></div>
-                            <div style="height: 20%" class="row">
-                                <div class="col-md-3"><a class="fancybox" rel="group2"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                                <div class="col-md-3"><a class="fancybox" rel="group2"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                                <div class="col-md-3"><a class="fancybox" rel="group2"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                                <div class="col-md-3"><a class="fancybox" rel="group2"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                            </div>
-                            <div class="meta-box"></div>
-                            <div style="height: 20%" class="row">
-                                <div class="col-md-3"><a class="fancybox" rel="group3"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                                <div class="col-md-3"><a class="fancybox" rel="group3"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                                <div class="col-md-3"><a class="fancybox" rel="group3"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                                <div class="col-md-3"><a class="fancybox" rel="group3"
-                                                         href="assets/img/backgrounds/1.jpg"><img
-                                        src="assets/img/backgrounds/1.jpg" alt="" width="100%"/></a></div>
-                            </div>
-                            <div class="meta-box"></div>
+                            {% for photo in photos %}
+                                <div class="meta-box"></div>
+                                <div style="height: 20%" class="row">
+                                    {% for i in photo %}
+                                        <div class="col-md-3">
+                                            <img class="img" data-toggle="modal" data-target="#myModal" src="{{ i.photo_url }}" alt="" width="100%"/>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="meta-box"></div>
                 </div>
             </div>
-            <footer>
-                <!--版权信息-->
-                <div class="copyright">
-                    Copyright Ybsat ©2016 All rights reserved 豫ICP备15027119&nbsp;&nbsp;
-                    <a href="www.ybsat.com">
-                        Theme leaves by Ybsat
-                    </a>
-                </div>
-            </footer>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <span style="color: black" aria-hidden="true">&times;</span>
+                            </button>
+                            <img style="margin-top: 10px" class="imgpreview" src="">
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $("#myModal").on("hidden", function () {
+                $(this).removeData("modal");
+            })
+        });
+        $('.img').on('click', function () {
+            $('.imgpreview').attr('src', $(this).attr('src'));
+        });
+    </script>
 {% endblock %}

@@ -2,7 +2,7 @@
 
 # from blog import app
 from flask import render_template,Blueprint
-from flask import current_app,request
+from flask import current_app,request,jsonify
 from flask_login import current_user
 
 from ..forms.auth import SignForm
@@ -49,7 +49,9 @@ def article_list():
 
 @main.route('/photo_album')
 def photo_album():
-    return render_template('photo_album.html')
+    objs = blogdb.query("select photo_url from photo_album where user_id =%s",user_id)
+    photos = [objs[i:i+4] for i in range(0,len(objs),4)]
+    return render_template('photo_album.html',photos=photos)
 
 @main.route('/img_upload', methods=["GET", "POST"])
 def img_upload():
