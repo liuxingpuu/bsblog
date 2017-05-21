@@ -4,6 +4,7 @@
 from flask import render_template,Blueprint
 from flask import current_app,request,jsonify
 from flask_login import current_user
+from flask.ext.login import login_required
 
 from ..forms.auth import SignForm
 from ..utils.db import blogdb
@@ -22,7 +23,7 @@ def welcome():
 def index():
     sql = """
     select *,to_char(created_time,'YYYY-MM-DD HH24:MI:SS') as time from article where user_id = %s
-    order by created_time desc
+    order by created_time desc limit 10
     """
     objs = blogdb.query(sql,user_id)
     return render_template('index.html',title='base',objs=objs)
@@ -55,6 +56,7 @@ def photo_album():
     return render_template('photo_album.html',photos=photos)
 
 @main.route('/img_upload', methods=["GET", "POST"])
+@login_required
 def img_upload():
     img_file = request.files.get('img_url')
     upload = qiniu_lib(access_key="3tp3FnwQn_jamkXiQE3HlOwHnItkyd2b_N6i2BMH",
@@ -77,6 +79,7 @@ def about_me():
     return render_template('about_me.html')
 
 @main.route('/edit_article', methods=["GET", "POST"])
+@login_required
 def edit_article():
     article = request.form.to_dict()
     if article:

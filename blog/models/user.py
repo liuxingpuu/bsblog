@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
-
 import logging
+
+from flask.ext.login import UserMixin
 
 from blog.utils.db import blogdb
 from blog.utils.password import check_password
 
 
-class User(object):
+class User(UserMixin):
 
-    def __init__(self,phone_number=None):
-        sql = "select * from user_list where phone_number = '{}'".format(phone_number)
+    def __init__(self,phone_number=None,user_id=None):
+        if phone_number:
+            sql = "select * from user_list where phone_number = '{}'".format(phone_number)
+        elif user_id:
+            sql = "select * from user_list where id = '{}'".format(user_id)
         user = blogdb.get(sql)
         if user:
             self.id = user['id']

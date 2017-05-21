@@ -8,6 +8,8 @@ from flask_login import current_user,  LoginManager
 from tm.sql import DatabaseWrapper
 from tm.sql import DatabaseClient
 
+from blog.models.user import User
+
 blogdb = DatabaseClient('blogdb')
 
 def load_config_class(config_name):
@@ -33,6 +35,7 @@ def create_app(config_name):
     from .utils.filters import configure_template_filters
     configure_template_filters(app)
     configure_logging(app)
+    configure_loginrequired(app)
 
     return app
 
@@ -50,3 +53,14 @@ def configure_blueprint(app):
 
     for blueprint, url_prefix in routers:
         app.register_blueprint(blueprint, url_prefix=url_prefix)
+
+def configure_loginrequired(app):
+    login_manager = LoginManager()
+    login_manager.login_message = u"您访问的页面需要登录后才能访问, 请先登录."
+    login_manager.session_protection = 'strong'
+    login_manager.login_view = 'auth.signin'
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User(user_id=user_id).get_instance()
+    login_manager.init_app(app)

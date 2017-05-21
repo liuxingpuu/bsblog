@@ -27,55 +27,46 @@
             </div>
             <!--main Start-->
             {% for obj in objs %}
-            <div class="row">
-                <div class="col-md-12 post-container">
-                    <h2 class="post-title">
-                        <a href="content.html" title="">{{ obj.title }}</a>
-                    </h2>
-                    <div class="meta-box">
-                        <span class="m-post-date"><i class="fa fa-calendar-o"></i>{{ obj.created_date }}</span>
-                    </div>
-                    <div class="post-content">
-                            {{ obj.content | safe}}
-                    </div>
-                    <div class="meta-box">
-                        {% set tag = obj.tags.split('/') %}
-                        <span class="cat-links"><i class="fa fa-navicon"></i><b>By:</b><a>liuxingpuu</a></span>
-                        <span class="tag-links"><i class="fa fa-tags"></i><b>标签:</b><a href="" rel="tag">{% for i in tag %}{{ i }} {% endfor %}</a></span>
-                        <span class="comments-link">
+                <div class="row">
+                    <div class="col-md-12 post-container">
+                        <h2 class="post-title">
+                            <a href="content.html" title="">{{ obj.title }}</a>
+                        </h2>
+                        <div class="meta-box">
+                            <span class="m-post-date"><i class="fa fa-calendar-o"></i>{{ obj.created_date }}</span>
+                        </div>
+                        <div class="post-content">
+                            {{ obj.content | safe }}
+                        </div>
+                        <div class="meta-box">
+                            {% set tag = obj.tags.split('/') %}
+                            <span class="cat-links"><i class="fa fa-navicon"></i><b>By:</b><a>liuxingpuu</a></span>
+                            <span class="tag-links"><i class="fa fa-tags"></i><b>标签:</b><a href=""
+                                                                                           rel="tag">{% for i in tag %}
+                                {{ i }} {% endfor %}</a></span>
+                            <span class="comments-link">
                             <a style="float: right" href="" class="ds-thread-count" title="">
                                 <i class="fa fa-comments-o"></i>评论</a>
                         </span>
-                        <span class="comments-link">
+                            <span class="comments-link">
                             <a style="float: right" href="" class="ds-thread-count" title="">
                                 <i class="fa fa-comments-o"></i>点赞(12)&nbsp;&nbsp;</a>
                         </span>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
             {% endfor %}
-            <!--推荐阅读-->
-            <div class="row">
-                <div class="col-md-12 post-container m-recommend-page">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <a href="" class="thumbnail">
-                                <img src="assets/img/works.png" alt="文章展示">
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="" class="thumbnail">
-                                <img src="assets/img/study.png" alt="照片展示">
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="" class="thumbnail">
-                                <img src="assets/img/book.png" alt="关于我">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
+
+    <script>
+        var cloudTieConfig = {
+            url: document.location.href,
+            sourceId: "",
+            productKey: "03945fc09ffb4b609d8228030ea08df8",
+            target: "cloud-tie-wrapper"
+        };
+    </script>
+    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
 {% endblock %}

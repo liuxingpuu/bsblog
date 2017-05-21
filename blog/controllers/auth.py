@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for,flash
 from flask import jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 
@@ -15,10 +15,11 @@ def signin():
 
     if form.validate_on_submit():
         user = User(form.phone_number.data.strip()).get_instance()
-        # if user:
-        #     if user.check_password(form.password.data):
-
-        return redirect(url_for('main.index'))
+        if user is not None:
+            if (user.check_password(raw_password=form.password.data)):
+                login_user(user)
+                return redirect(url_for('main.index'))
+        flash(u'用户名或者密码错误')
 
     return render_template('welcome.html', title='Welcome',form=form)
 

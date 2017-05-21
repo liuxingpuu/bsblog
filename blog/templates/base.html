@@ -1,9 +1,9 @@
 <html>
 <head>
     {% if title %}
-    <title>{{ title }} - 咸鱼</title>
+        <title>{{ title }} - 咸鱼</title>
     {% else %}
-    <title>咸鱼</title>
+        <title>咸鱼</title>
     {% endif %}
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
@@ -30,18 +30,19 @@
             <li>
                 <a style="text-decoration: none" href="{{ url_for('main.photo_album') }}">相册</a>
             </li>
+            {% if current_user.id %}
+                <li>
+                    <a style="text-decoration: none" href="{{ url_for('main.edit_article') }}">写文章</a>
+                </li>
+            {% endif %}
             <li>
-                <a style="text-decoration: none" href="{{ url_for('main.edit_article') }}">写文章</a>
+                <a style="text-decoration: none" href="{{ url_for('main.about_me') }}">关于</a>
             </li>
-            <li>
-                <a style="text-decoration: none" href="{{ url_for('main.img_upload') }}">上传照片</a>
-            </li>
-            <li>
-                <a style="text-decoration: none" href="{{ url_for('main.about_me') }}">关于我</a>
-            </li>
-{#            <li style="float: right">#}
-{#                <a style="text-decoration: none" href="#">退出</a>#}
-{#            </li>#}
+            {% if current_user.id %}
+                <li style="float: right">
+                    <a style="text-decoration: none" href="{{ url_for('auth.signout') }}">退出</a>
+                </li>
+            {% endif %}
         </ul>
     </nav>
     <aside class="sidebar">
@@ -49,7 +50,8 @@
             <h2>咸鱼</h2>
             <p>Hello, 我的名字是 <b>刘行朴</b>.<br>
                 联系我:<br><b>QQ邮箱：547137554@qq.com</b><br>
-            <b>Github</b>：<a style="text-decoration: none;" href="https://github.com/liuxingpuu">github.com/liuxingpuu</a></p>
+                <b>Github</b>：<a style="text-decoration: none;" href="https://github.com/liuxingpuu">github.com/liuxingpuu</a>
+            </p>
         </div>
         <div class="widget">
             <h2>最新发表</h2>
@@ -58,17 +60,17 @@
         </div>
     </aside>
     <div style="display: inline-block;float: right;width: 800px">
-    {% block content %}
-    {% endblock %}
-    <!-- 网站底部 -->
-            <footer>
-                <!--版权信息-->
-                <div class="copyright">
-                    <a>
-                        Theme Salted-fish by liuxingpuu
-                    </a>
-                </div>
-            </footer>
+        {% block content %}
+        {% endblock %}
+        <!-- 网站底部 -->
+        <footer>
+            <!--版权信息-->
+            <div class="copyright">
+                <a>
+                    Theme Salted-fish by liuxingpuu
+                </a>
+            </div>
+        </footer>
     </div>
 </div>
 
