@@ -64,14 +64,13 @@ def img_upload():
 
     if img_file:
         result = upload.upload(upload_file=img_file,bucket_name='qipai-activity', file_type='img')
-    else:
-        result = {"status":2, "errmsg":u"文件上传出错"}
-    if result['status'] != 1:
-        current_app.logger.error('ttt%s' % (result))
+        if result['status'] != 1:
+            current_app.logger.error('ttt%s' % (result))
 
-        return render_template("img_upload.html")
-    img_url = result['file_url']
-    blogdb.execute("insert into photo_album (user_id,photo_url) VALUES (%s,%s)",user_id,img_url)
+            return render_template("img_upload.html")
+        img_url = result['file_url']
+        blogdb.execute("insert into photo_album (user_id,photo_url) VALUES (%s,%s)",user_id,img_url)
+        return redirect(url_for('main.photo_album'))
     return render_template('img_upload.html')
 
 @main.route('/about_me')
@@ -98,7 +97,7 @@ def edit_article():
     article = request.form.to_dict()
     if article:
         sql = """
-        update article set title=%s,tags=%s,content=%s where id=%s
+        update article set title=%s,tags=%s,content=%s,modify_time=CURRENT_TIMESTAMP where id=%s
         """
         blogdb.execute(sql,article['title'],article['tags'],article['content'],article_id)
         return redirect(url_for('main.article_list'))

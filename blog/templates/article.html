@@ -5,6 +5,10 @@
     <style>
         code > span, code > span > span {
             color: black !important;
+
+        }
+        .post-container p {
+            text-indent: 0!important;
         }
     </style>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
@@ -44,14 +48,14 @@
                             <span class="tag-links"><i class="fa fa-tags"></i><b>标签:</b><a href=""
                                                                                            rel="tag">{% for i in tag %}
                                 {{ i }} {% endfor %}</a></span>
-                            <span class="comments-link">
-                            <a style="float: right" href="" class="ds-thread-count" title="">
-                                <i class="fa fa-comments-o"></i>评论</a>
-                        </span>
-                            <span class="comments-link">
-                            <a style="float: right" href="" class="ds-thread-count" title="">
-                                <i class="fa fa-comments-o"></i>点赞(12)&nbsp;&nbsp;</a>
-                        </span>
+                            {#                            <span class="comments-link">#}
+                            {#                            <a style="float: right" href="" class="ds-thread-count" title="">#}
+                            {#                                <i class="fa fa-comments-o"></i>评论</a>#}
+                            {#                        </span>#}
+{#                            <span class="comments-link">#}
+{#                            <a style="float: right" href="" class="ds-thread-count" title="">#}
+{#                                <i class="fa fa-comments-o"></i>点赞(12)&nbsp;&nbsp;</a>#}
+{#                        </span>#}
                         </div>
                     </div>
                 </div>
