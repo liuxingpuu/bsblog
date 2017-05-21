@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}欢迎光临首页{% endblock %}
+{% block title %}照片上传{% endblock %}
 
 {% block content %}
     <style>
@@ -36,11 +36,13 @@
                 </a>
                 <label style="display: block">图片预览：</label>
                 <img style="width: 250px;margin:0 auto;display:block;margin-top: 5px" id="preview" alt="" name="pic"/>
-{#                <label>Tags:</label>#}
-{#	            <input id="tags" type="text" class="input" value="" placeholder="标签，以'/'隔开，例如'生活/技术/往事'等关键字" />#}
-{#                <label>描述:</label>#}
-{#	            <input id="tags" type="text" class="input" value="" placeholder="图片描述，简要描述这个图片表达的内容" />#}
-                <button style="display:block;margin:10px auto;padding: 5px 15px" class="button bg-sub" type="submit" id="submit">上传照片</button>
+                                <label>Tags:</label>
+                	            <input id="tags" type="text" class="input" value="" placeholder="标签，以'/'隔开，例如'生活/技术/往事'等关键字" />
+                                <label>描述:</label>
+                	            <input id="tags" type="text" class="input" value="" placeholder="图片描述，简要描述这个图片表达的内容" />
+                <button style="display:block;margin:10px auto;padding: 5px 15px" class="button bg-sub" type="submit"
+                        id="submit">上传照片
+                </button>
             </form>
         </div>
     </div>

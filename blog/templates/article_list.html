@@ -34,13 +34,13 @@
                     <th>详情</th>
                 </tr>
                 {% for obj in objs %}
-                <tr>
-                    <td>{{ obj.title }}</td>
-                    <td>{{ obj.tags }}</td>
-                    <td>liuxingpuu</td>
-                    <td>{{ obj.created_time }}</td>
-                    <td><a href="{{ url_for('main.article',article_id=obj.id) }}">点击阅读文章内容</a></td>
-                </tr>
+                    <tr>
+                        <td>{{ obj.title }}</td>
+                        <td>{{ obj.tags }}</td>
+                        <td>liuxingpuu</td>
+                        <td>{{ obj.created_time }}</td>
+                        <td><a href="{{ url_for('main.article',article_id=obj.id) }}">点击阅读文章内容</a></td>
+                    </tr>
                 {% endfor %}
             </table>
         </div>

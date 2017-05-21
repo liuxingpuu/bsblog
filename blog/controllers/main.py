@@ -21,7 +21,8 @@ def welcome():
 @main.route('/index')
 def index():
     sql = """
-    select *,to_char(created_time,'YYYY-MM-DD HH24:MI:SS') as created_time from article where user_id = %s
+    select *,to_char(created_time,'YYYY-MM-DD HH24:MI:SS') as time from article where user_id = %s
+    order by created_time desc
     """
     objs = blogdb.query(sql,user_id)
     return render_template('index.html',title='base',objs=objs)
