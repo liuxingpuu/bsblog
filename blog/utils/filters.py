@@ -7,3 +7,7 @@ def configure_template_filters(app):
     def content_split(value):
         result = value.split('</p>')[0]+value.split('</p>')[1]
         return result
+
+    @app.template_filter()
+    def content_split_p(value):
+        return value

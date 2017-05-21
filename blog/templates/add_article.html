@@ -79,15 +79,15 @@
             <p style="padding: 5px;font-size: 12px" class="bg-back">编辑完文章后点击下方保存按钮发布，别忘了填写标题和标签哦~！:)</p>
             <div>
                 <label>标题</label>
-                <input id="title" type="text" class="input" value="{{ obj.title }}" placeholder="文章的标题"/>
+                <input id="title" type="text" class="input" value="" placeholder="文章的标题"/>
             </div>
             <div>
                 <label>Tags</label>
-                <input id="tags" type="text" class="input" value="{{ obj.tags }}" placeholder="标签，以'/'隔开，例如'生活/技术/往事'等关键字"/>
+                <input id="tags" type="text" class="input" value="" placeholder="标签，以'/'隔开，例如'生活/技术/往事'等关键字"/>
             </div>
 
             <label>内容</label>
-            <div id="editor" style="height: 400px"><p>{{ obj.content | safe }}</p></div>
+            <div id="editor" style="height: 400px"><p>请输入内容...</p></div>
             <button style="display:block;margin:10px auto" class="button bg-sub button-big" id="submit"
                     onfocus="blur()">保存
             </button>
@@ -104,23 +104,30 @@
         editor.create();
         $('#submit').click(function () {
             // 获取编辑器区域完整html代码
-            var content = editor.$txt.html().replace(/<p><\/p>/g,"").replace(/<p><br><\/p>/g,"")
+            var content = editor.$txt.html();
             var title = $('#title').val();
             var tags = $('#tags').val();
-            $.ajax({
-                url: "{{ url_for('main.edit_article',article_id=article_id) }}",
-                type: 'POST',
-                data: {
-                    content: content,
-                    title: title,
-                    tags: tags
-                },
-                dataType: "text",
-                {#                async: false,#}
-                success: function () {
-                    window.location.href = "{{ url_for('main.article_list') }}"
-                }
-            });
+            if (title == '' || tags == '' || content == ''){
+                alert('有内容为空，检查一下吧')
+                return
+            }
+            else {
+                $.ajax({
+                    url: "{{ url_for('main.add_article') }}",
+                    type: 'POST',
+                    data: {
+                        content: content,
+                        title: title,
+                        tags: tags
+                    },
+                    dataType: "text",
+                    {#                async: false,#}
+                    success: function () {
+                        window.location.href = "{{ url_for('main.article_list') }}"
+                    }
+                });
+            }
         });
+
     </script>
 {% endblock %}

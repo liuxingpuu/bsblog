@@ -1,8 +1,8 @@
 # -*- coding:utf-8 -*-
 
 # from blog import app
-from flask import render_template,Blueprint
-from flask import current_app,request,jsonify
+from flask import render_template,Blueprint,url_for
+from flask import current_app,request,jsonify,redirect
 from flask_login import current_user
 from flask.ext.login import login_required
 
@@ -78,13 +78,35 @@ def img_upload():
 def about_me():
     return render_template('about_me.html')
 
-@main.route('/edit_article', methods=["GET", "POST"])
+@main.route('/add_article', methods=["GET", "POST"])
 @login_required
-def edit_article():
+def add_article():
     article = request.form.to_dict()
     if article:
         sql = """
         insert into article (user_id,title,tags,content) VALUES (%s,%s ,%s ,%s)
         """
         blogdb.execute(sql,user_id,article['title'],article['tags'],article['content'])
-    return render_template('edit_article.html')
+        return redirect(url_for('main.article_list'))
+    return render_template('add_article.html')
+
+@main.route('/edit_article',methods=["GET", "POST"])
+@login_required
+def edit_article():
+    article_id = request.args.get('article_id')
+    obj = blogdb.get('select * from article where id=%s',article_id)
+    article = request.form.to_dict()
+    if article:
+        sql = """
+        update article set title=%s,tags=%s,content=%s where id=%s
+        """
+        blogdb.execute(sql,article['title'],article['tags'],article['content'],article_id)
+        return redirect(url_for('main.article_list'))
+    return render_template('edit_article.html',article_id=article_id,obj=obj)
+
+@main.route('/delete_article', methods=["GET", "POST"])
+@login_required
+def delete_article():
+    article_id = request.args.get('article_id')
+    blogdb.execute("delete from article where id=%s",article_id)
+    return redirect(url_for('main.article_list'))

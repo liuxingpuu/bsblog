@@ -31,15 +31,16 @@
                     <th>标签</th>
                     <th>作者</th>
                     <th>创作时间</th>
-                    <th>详情</th>
+                    <th colspan="2">详情</th>
                 </tr>
                 {% for obj in objs %}
                     <tr>
-                        <td>{{ obj.title }}</td>
+                        <td><a href="{{ url_for('main.article',article_id=obj.id) }}">{{ obj.title }}</a></td>
                         <td>{{ obj.tags }}</td>
                         <td>liuxingpuu</td>
                         <td>{{ obj.created_time }}</td>
-                        <td><a href="{{ url_for('main.article',article_id=obj.id) }}">点击阅读文章内容</a></td>
+                        <td><a href="{{ url_for('main.edit_article',article_id=obj.id) }}">编辑</a></td>
+                        <td><a href="javascript:if(confirm('确认删除吗?'))location='{{ url_for('main.delete_article',article_id=obj.id) }}'">删除</a></td>
                     </tr>
                 {% endfor %}
             </table>
