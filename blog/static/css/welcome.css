@@ -95,7 +95,7 @@ input {
     border: 1px solid lightgray;
     letter-spacing: 3px;
 }
-#phone_number {
+#phone_number,#password {
     margin-bottom: 10px;
 }
 input:-webkit-autofill {

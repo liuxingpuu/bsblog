@@ -17,7 +17,7 @@ def signin():
         user = User(form.phone_number.data.strip()).get_instance()
         if user is not None:
             if (user.check_password(raw_password=form.password.data)):
-                login_user(user)
+                login_user(user,form.remember_me.data)
                 return redirect(url_for('main.index'))
         flash(u'用户名或者密码错误')
 
