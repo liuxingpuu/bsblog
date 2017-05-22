@@ -42,6 +42,10 @@
                 <li style="float: right">
                     <a style="text-decoration: none" href="{{ url_for('auth.signout') }}">退出</a>
                 </li>
+                {% elif not current_user.id %}
+                <li style="float: right">
+                <a style="text-decoration: none" href="{{ url_for('auth.signin') }}">管理员登陆</a>
+                </li>
             {% endif %}
         </ul>
     </nav>
@@ -52,6 +56,13 @@
                 联系我:<br><b>QQ邮箱：547137554@qq.com</b><br>
                 <b>Github</b>：<a style="text-decoration: none;" href="https://github.com/liuxingpuu">github.com/liuxingpuu</a>
             </p>
+        </div>
+        <div class="widget">
+            <h2>公告</h2>
+            <p id="notice"></p>
+            {% if current_user.id %}
+            <a style="float: right" href="{{ url_for('main.add_notice') }}">编辑</a>
+            {% endif %}
         </div>
         <div class="widget">
             <h2>最新发表</h2>
@@ -73,7 +84,20 @@
         </footer>
     </div>
 </div>
-
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+                $.ajax({
+                    type:'get',
+                    url:"{{ url_for('main.notice') }}",
+                    async:false,
+                    success:function (data) {
+                        $('#notice').text(data['errmsg'])
+                    }
+                })
+            }
+    );
+</script>
 
 </body>
 </html>

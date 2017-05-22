@@ -6,13 +6,55 @@ from flask import current_app,request,jsonify,redirect
 from flask_login import current_user
 from flask.ext.login import login_required
 
-from ..forms.auth import SignForm
+from ..forms.auth import SignForm,AddNoticeForm
 from ..utils.db import blogdb
 from ..utils.qiniu import qiniu_lib
 
 main = Blueprint("main", __name__)
 
 user_id = '12345678'
+
+@main.route('/base',methods=['GET','POST'])
+def base():
+    pass
+
+@main.route('/notice',methods=['GET','POST'])
+def notice():
+    obj = blogdb.get('select * from notice where is_show =1')
+    if obj:
+        return jsonify({'errno':0,'errmsg':obj['notice']})
+    else:
+        return jsonify({'errno':1,'errmsg':u'暂无公告'})
+
+@main.route('/add_notice',methods=['GET','POST'])
+@login_required
+def add_notice():
+    objs = blogdb.query("select *,to_char(created_time,'YYYY-MM-DD HH24:MI:SS') as created_time from notice order by id")
+    form = AddNoticeForm()
+    if form.validate_on_submit():
+
+        sql = """
+        insert into notice (notice) VALUES (%s)
+        """
+        blogdb.execute(sql,form.notice.data)
+        return redirect(url_for('main.add_notice'))
+    return render_template('add_notice.html',form=form,objs=objs)
+
+@main.route('/delete_notice',methods=['GET','POST'])
+@login_required
+def delete_notice():
+    id = request.args.get('id')
+    blogdb.execute('delete from notice where id=%s',id)
+    return redirect(url_for('main.add_notice'))
+
+@main.route('/show_notice')
+@login_required
+def show_notice():
+    id = request.args.get('id')
+    is_show = request.args.get('is_show')
+    blogdb.execute('update notice set is_show=%s where id=%s',is_show,id)
+    blogdb.execute('update notice set is_show=0 where id !=%s',id)
+    return redirect(url_for('main.add_notice'))
 
 @main.route('/')
 def welcome():
