@@ -16,7 +16,7 @@
             <div class="row top-title">
                 <div class="col-md-12">
                     <h1 class="page-title">
-                        关于异步
+                        关于咸鱼
                     </h1>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                 <div class="col-md-12 post-container">
                     <h2 class="post-title">
                         <a href="about.php" rel="bookmark">
-                            关于异步
+                            关于咸鱼
                         </a>
                     </h2>
                     <div class="post-content">
@@ -32,7 +32,7 @@
                             <div class="col-md-12">
                                 <div class="thumbnail">
                                     <a href="javascript:;">
-                                        <img title="关于我 @Ybsat" src="assets/img/about.png" alt="关于我 @Ybsat"
+                                        <img title="关于我 @Ybsat" src="{{ url_for('static',filename='img/about.png') }}" alt="关于我 @Ybsat"
                                         />
                                     </a>
                                     <div class="caption">
@@ -49,8 +49,8 @@
                                     简单概述
                                 </h3>
                                 <p>
-                                    学程序是因为有梦想，希望自己以后能够和小伙伴们创建一家属于自己的互联网公司。对前端(FrontEnd) &amp; 交互体验(User
-                                    Experience)/后端(Backend)/存储(Storage)/等相关技术十分感兴趣，喜欢变着花样（寻求最优方案）去完成想要完成的事情。可以独立设计并完成网站或软件视觉设计，有轻微代码洁癖。
+                                    咸鱼是一个自由开放的个人博客，用来记录我的经历和学习心得，以及一些珍贵的照片。我个人对后端和前端交互这方面比较感兴趣，
+                                    希望借此来增强自己的学习并完成想要完成的事情。咸鱼全部由我个人开发，并把代码托管在Github上。
                                 </p>
                                 <p>
                                     我的联系方式：
@@ -60,60 +60,47 @@
                                         <li>
                                             电子邮箱:
                                             <kbd>
-                                                junqiahen@gmail.com
+                                                547137554@qq.com
                                             </kbd>
                                         </li>
                                         <li>
                                             腾讯QQ:
                                             <kbd>
-                                                @724847899
+                                                547137554
                                             </kbd>
                                         </li>
                                         <li>
                                             新浪微博:
                                             <kbd>
-                                                weibo.com/5249464563/profile
+                                                http://weibo.com/u/3754407553
                                             </kbd>
-                                        </li>
-                                        <li>
-                                            腾讯微博:
-                                            <kbd>
-                                                t.qq.com/qaz0857/kbd>
                                         </li>
                                         <li>
                                             我的GIT:
                                             <kbd>
+                                                https://github.com/liuxingpuu/
                                             </kbd>
                                         </li>
                                     </ul>
                                 </blockquote>
                             </div>
                         </div>
-                        <div class="panel panel-default">
-                            <div class="panel-body clearfix">
-                                <h3>
-                                    往事如烟
-                                </h3>
-                                <p>
-                                    暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发
-                                </p>
-                                <p>
-                                    暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发。
-                                </p>
-                                <p>
-                                    暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发。
-                                </p>
-                                <p>
-                                    暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发。
-                                </p>
-                                <footer class="pull-right">
-                                    九月落笔于
-                                    <cite title="郑州">
-                                        郑州
-                                    </cite>
-                                </footer>
-                            </div>
-                        </div>
+{#                        <div class="panel panel-default">#}
+{#                            <div class="panel-body clearfix">#}
+{#                                <h3>#}
+{#                                    往事如烟#}
+{#                                </h3>#}
+{#                                <p>#}
+{#                                    暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发暂未开发#}
+{#                                </p>#}
+{#                                <footer class="pull-right">#}
+{#                                    九月落笔于#}
+{#                                    <cite title="郑州">#}
+{#                                        郑州#}
+{#                                    </cite>#}
+{#                                </footer>#}
+{#                            </div>#}
+{#                        </div>#}
                     </div>
                     <div class="meta-box">
                     </div>
@@ -123,15 +110,6 @@
                 <div class="col-md-4">
                 </div>
             </div>
-            <footer>
-                <!--版权信息-->
-                <div class="copyright">
-                    Copyright Ybsat ©2016 All rights reserved 豫ICP备15027119&nbsp;&nbsp;
-                    <a href="www.ybsat.com">
-                        Theme leaves by Ybsat
-                    </a>
-                </div>
-            </footer>
         </div>
     </div>
 {% endblock %}
