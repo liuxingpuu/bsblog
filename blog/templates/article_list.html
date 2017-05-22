@@ -31,7 +31,9 @@
                     <th>标签</th>
                     <th>作者</th>
                     <th>创作时间</th>
+                    {% if current_user.id %}
                     <th colspan="2">详情</th>
+                    {% endif %}
                 </tr>
                 {% for obj in objs %}
                     <tr>
@@ -39,8 +41,10 @@
                         <td>{{ obj.tags }}</td>
                         <td>liuxingpuu</td>
                         <td>{{ obj.created_time }}</td>
+                        {% if current_user.id %}
                         <td><a href="{{ url_for('main.edit_article',article_id=obj.id) }}">编辑</a></td>
                         <td><a href="javascript:if(confirm('确认删除吗?'))location='{{ url_for('main.delete_article',article_id=obj.id) }}'">删除</a></td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </table>

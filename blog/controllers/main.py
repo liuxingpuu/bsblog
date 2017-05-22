@@ -14,6 +14,21 @@ main = Blueprint("main", __name__)
 
 user_id = '12345678'
 
+@main.route('/')
+def welcome():
+    form = SignForm()
+    return render_template('welcome.html', title='Welcome',form=form)
+
+@main.route('/index')
+def index():
+    sql = """
+    select *,to_char(created_time,'YYYY-MM-DD HH24:MI:SS') as time from article where user_id = %s
+    order by created_time desc limit 10
+    """
+    objs = blogdb.query(sql,user_id)
+    return render_template('index.html',title='base',objs=objs)
+
+
 @main.route('/base',methods=['GET','POST'])
 def base():
     pass
@@ -55,20 +70,6 @@ def show_notice():
     blogdb.execute('update notice set is_show=%s where id=%s',is_show,id)
     blogdb.execute('update notice set is_show=0 where id !=%s',id)
     return redirect(url_for('main.add_notice'))
-
-@main.route('/')
-def welcome():
-    form = SignForm()
-    return render_template('welcome.html', title='Welcome',form=form)
-
-@main.route('/index')
-def index():
-    sql = """
-    select *,to_char(created_time,'YYYY-MM-DD HH24:MI:SS') as time from article where user_id = %s
-    order by created_time desc limit 10
-    """
-    objs = blogdb.query(sql,user_id)
-    return render_template('index.html',title='base',objs=objs)
 
 @main.route('/home')
 def home():
