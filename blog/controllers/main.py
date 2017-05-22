@@ -12,8 +12,6 @@ from ..utils.qiniu import qiniu_lib
 
 main = Blueprint("main", __name__)
 
-user_id = '12345678'
-
 @main.route('/')
 def welcome():
     form = SignForm()
@@ -22,10 +20,10 @@ def welcome():
 @main.route('/index')
 def index():
     sql = """
-    select *,to_char(created_time,'YYYY-MM-DD HH24:MI:SS') as time from article where user_id = %s
+    select *,to_char(created_time,'YYYY-MM-DD HH24:MI:SS') as time from article
     order by created_time desc limit 10
     """
-    objs = blogdb.query(sql,user_id)
+    objs = blogdb.query(sql)
     return render_template('index.html',title='base',objs=objs)
 
 @main.route('/notice',methods=['GET','POST'])
@@ -74,17 +72,17 @@ def home():
 def article():
     article_id = request.args.get('article_id',None)
     sql = """
-    select *,to_char(created_time,'YYYY-MM-DD HH24:MI:SS') as created_time from article where user_id = %s and id =%s
+    select *,to_char(created_time,'YYYY-MM-DD HH24:MI:SS') as created_time from article where id =%s
     """
-    objs = blogdb.query(sql,user_id,article_id)
+    objs = blogdb.query(sql,article_id)
     return render_template('article.html',objs=objs)
 
 @main.route("/article_list")
 def article_list():
     sql = """
-    select *,to_char(created_time,'YYYY-MM-DD HH24:MI:SS') as created_time from article where user_id = %s
+    select *,to_char(created_time,'YYYY-MM-DD HH24:MI:SS') as created_time from article
     """
-    objs = blogdb.query(sql,user_id)
+    objs = blogdb.query(sql)
     return render_template('article_list.html',objs=objs)
 
 @main.route('/latest_article',methods=['GET','POST'])
@@ -97,7 +95,7 @@ def latest_article():
 
 @main.route('/photo_album')
 def photo_album():
-    objs = blogdb.query("select id,photo_url from photo_album where user_id =%s",user_id)
+    objs = blogdb.query("select id,photo_url from photo_album")
     photos = [objs[i:i+4] for i in range(0,len(objs),4)]
     return render_template('photo_album.html',photos=photos)
 
@@ -122,7 +120,7 @@ def img_upload():
 
             return render_template("img_upload.html")
         img_url = result['file_url']
-        blogdb.execute("insert into photo_album (user_id,photo_url) VALUES (%s,%s)",user_id,img_url)
+        blogdb.execute("insert into photo_album (user_id,photo_url) VALUES (%s,%s)",current_user.id,img_url)
         return redirect(url_for('main.photo_album'))
     return render_template('img_upload.html')
 
@@ -138,7 +136,7 @@ def add_article():
         sql = """
         insert into article (user_id,title,tags,content) VALUES (%s,%s ,%s ,%s)
         """
-        blogdb.execute(sql,user_id,article['title'],article['tags'],article['content'])
+        blogdb.execute(sql,current_user.id,article['title'],article['tags'],article['content'])
         return redirect(url_for('main.article_list'))
     return render_template('add_article.html')
 
