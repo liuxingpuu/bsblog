@@ -25,7 +25,7 @@ html, body {
 }
 
 body {
-    background: url('/static/img/background.jpg') 50% 50%/cover!important;
+    background: url('/static/img/background2.jpg') 50% 50%/cover!important;
 }
 
 p {
@@ -44,13 +44,13 @@ p {
     vertical-align: middle;
     text-align: center;
     text-transform: uppercase;
-    color: #fff;
+    color: #4a8467;
     /*font-size: 12px;*/
 }
 
 #info #info-content h1 {
-    color: #fff;
-    border: 3px solid #fff;
+    color: #4a8467;
+    border: 3px solid #4a8467;
     text-align: center;
     /*background: rgba(0, 0, 0, 0.1);*/
     font-size: 22px;
