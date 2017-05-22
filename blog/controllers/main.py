@@ -89,7 +89,7 @@ def article_list():
 
 @main.route('/latest_article',methods=['GET','POST'])
 def latest_article():
-    objs = blogdb.query("select title,tags from article order by created_time desc limit 3")
+    objs = blogdb.query("select id,title,tags from article order by created_time desc limit 3")
     if objs:
         return jsonify({'errno':0,'errmsg':objs})
     else:

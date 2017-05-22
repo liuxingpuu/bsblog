@@ -42,9 +42,9 @@
                 <li style="float: right">
                     <a style="text-decoration: none" href="{{ url_for('auth.signout') }}">退出</a>
                 </li>
-                {% elif not current_user.id %}
+            {% elif not current_user.id %}
                 <li style="float: right">
-                <a style="text-decoration: none" href="{{ url_for('auth.signin') }}">管理员登陆</a>
+                    <a style="text-decoration: none" href="{{ url_for('auth.signin') }}">管理员登陆</a>
                 </li>
             {% endif %}
         </ul>
@@ -61,7 +61,7 @@
             <h2>公告</h2>
             <p id="notice"></p>
             {% if current_user.id %}
-            <a style="float: right" href="{{ url_for('main.add_notice') }}">公告管理</a>
+                <a style="float: right" href="{{ url_for('main.add_notice') }}">公告管理</a>
             {% endif %}
         </div>
         <div id="latest" class="widget">
@@ -97,10 +97,10 @@
 <script>
     $(document).ready(function () {
                 $.ajax({
-                    type:'get',
-                    url:"{{ url_for('main.notice') }}",
-                    async:false,
-                    success:function (data) {
+                    type: 'get',
+                    url: "{{ url_for('main.notice') }}",
+                    async: false,
+                    success: function (data) {
                         $('#notice').text(data['errmsg'])
                     }
                 })
@@ -108,14 +108,28 @@
     );
     $(document).ready(function () {
                 $.ajax({
-                    type:'get',
-                    url:"{{ url_for('main.latest_article') }}",
-                    async:false,
-                    success:function (data) {
+                    type: 'get',
+                    url: "{{ url_for('main.latest_article') }}",
+                    async: false,
+                    success: function (data) {
                         if (data.errno == 0) {
-                        $('#latest1').text(data.errmsg[0].title+'('+(data.errmsg[0].tags)+')')
-                        $('#latest2').text(data.errmsg[1].title+'('+(data.errmsg[1].tags)+')')
-                        $('#latest3').text(data.errmsg[2].title+'('+(data.errmsg[2].tags)+')')
+                            try {
+                                $('#latest1').attr('href', '{{ url_for('main.article') }}' + '?article_id=' + data.errmsg[0].id)
+                                $('#latest2').attr('href', '{{ url_for('main.article') }}' + '?article_id=' + data.errmsg[1].id)
+                                $('#latest3').attr('href', '{{ url_for('main.article') }}' + '?article_id=' + data.errmsg[2].id)
+                            }
+                            catch (err) {
+                                console.log(err)
+                            }
+                            try {
+                                $('#latest1').text(data.errmsg[0].title + '(' + (data.errmsg[0].tags) + ')')
+                                $('#latest2').text(data.errmsg[1].title + '(' + (data.errmsg[1].tags) + ')')
+                                $('#latest3').text(data.errmsg[2].title + '(' + (data.errmsg[2].tags) + ')')
+                            }
+                            catch (err) {
+                                console.log(err)
+                            }
+
                         }
                         else {
                             $('#latest').html("<h2>最新发表</h2>暂无最新文章")
