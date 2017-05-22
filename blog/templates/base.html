@@ -64,10 +64,11 @@
             <a style="float: right" href="{{ url_for('main.add_notice') }}">公告管理</a>
             {% endif %}
         </div>
-        <div class="widget">
+        <div id="latest" class="widget">
             <h2>最新发表</h2>
-            <p><a>Flask框架简介(Python/Flask)</a></p>
-            <p><a>Hello World(程序/入门)</a></p>
+            <p><a id="latest1"></a></p>
+            <p><a id="latest2"></a></p>
+            <p><a id="latest3"></a></p>
         </div>
     </aside>
     <div style="display: inline-block;float: right;width: 800px">
@@ -101,6 +102,24 @@
                     async:false,
                     success:function (data) {
                         $('#notice').text(data['errmsg'])
+                    }
+                })
+            }
+    );
+    $(document).ready(function () {
+                $.ajax({
+                    type:'get',
+                    url:"{{ url_for('main.latest_article') }}",
+                    async:false,
+                    success:function (data) {
+                        if (data.errno == 0) {
+                        $('#latest1').text(data.errmsg[0].title+'('+(data.errmsg[0].tags)+')')
+                        $('#latest2').text(data.errmsg[1].title+'('+(data.errmsg[1].tags)+')')
+                        $('#latest3').text(data.errmsg[2].title+'('+(data.errmsg[2].tags)+')')
+                        }
+                        else {
+                            $('#latest').html("<h2>最新发表</h2>暂无最新文章")
+                        }
                     }
                 })
             }

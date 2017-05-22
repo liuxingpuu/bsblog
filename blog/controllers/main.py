@@ -28,11 +28,6 @@ def index():
     objs = blogdb.query(sql,user_id)
     return render_template('index.html',title='base',objs=objs)
 
-
-@main.route('/base',methods=['GET','POST'])
-def base():
-    pass
-
 @main.route('/notice',methods=['GET','POST'])
 def notice():
     obj = blogdb.get('select * from notice where is_show =1')
@@ -91,6 +86,14 @@ def article_list():
     """
     objs = blogdb.query(sql,user_id)
     return render_template('article_list.html',objs=objs)
+
+@main.route('/latest_article',methods=['GET','POST'])
+def latest_article():
+    objs = blogdb.query("select title,tags from article order by created_time desc limit 3")
+    if objs:
+        return jsonify({'errno':0,'errmsg':objs})
+    else:
+        return jsonify({'errno':1,'errmsg':u'暂无新的文章'})
 
 @main.route('/photo_album')
 def photo_album():
