@@ -43,6 +43,9 @@
                                         <div class="col-md-3">
                                             <img class="img" data-toggle="modal" data-target="#myModal"
                                                  src="{{ i.photo_url }}" alt="" width="100%"/>
+                                            {% if current_user.id %}
+                                            <a style="margin-left: 60px" href="javascript:if(confirm('确认删除吗?'))location='{{ url_for('main.delete_photo',id=i.id) }}'">删除</a>
+                                            {% endif %}
                                         </div>
                                     {% endfor %}
                                 </div>

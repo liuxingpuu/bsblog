@@ -93,9 +93,16 @@ def article_list():
 
 @main.route('/photo_album')
 def photo_album():
-    objs = blogdb.query("select photo_url from photo_album where user_id =%s",user_id)
+    objs = blogdb.query("select id,photo_url from photo_album where user_id =%s",user_id)
     photos = [objs[i:i+4] for i in range(0,len(objs),4)]
     return render_template('photo_album.html',photos=photos)
+
+@main.route('/delete_photo', methods=["GET", "POST"])
+@login_required
+def delete_photo():
+    id = request.args.get('id')
+    blogdb.execute('delete from photo_album where id=%s',id)
+    return redirect(url_for('main.photo_album'))
 
 @main.route('/img_upload', methods=["GET", "POST"])
 @login_required
